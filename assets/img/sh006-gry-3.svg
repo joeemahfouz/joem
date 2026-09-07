@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="interior">
+  <defs><radialGradient id="s" cx="50%" cy="38%" r="75%">
+    <stop offset="0%" stop-color="#ffffff"/><stop offset="70%" stop-color="#f4f1ec"/><stop offset="100%" stop-color="#e9e4dc"/>
+  </radialGradient></defs>
+  <rect width="600" height="600" fill="url(#s)"/>
+  <ellipse cx="300" cy="474" rx="190" ry="26" fill="#000000" opacity="0.08"/>
+  <path d="M212,300 Q300,208 388,300" fill="none" stroke="#8A8A8A" stroke-width="15" stroke-linecap="round"/><rect x="190" y="300" width="220" height="172" rx="22" fill="#8A8A8A" stroke="none" stroke-width="0"/><path d="M190,326 v-4 a22,22 0 0 1 22,-22 h176 a22,22 0 0 1 22,22 v38 a16,16 0 0 1 -16,16 h-188 a16,16 0 0 1 -16,-16 z" fill="#8A8A8A" stroke="none" stroke-width="0"/><rect x="288" y="350" width="24" height="16" rx="4" fill="#c9a227"/><rect x="216" y="312" width="168" height="116" rx="12" fill="#efe9df"/><rect x="234" y="332" width="132" height="9" rx="4" fill="#00000018"/><rect x="234" y="356" width="86" height="9" rx="4" fill="#00000012"/>
+  <text x="300" y="558" text-anchor="middle" font-family="Georgia, serif" font-size="21" fill="#8a8175" letter-spacing="1.5">interior</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="sole">
+  <defs><radialGradient id="s" cx="50%" cy="38%" r="75%">
+    <stop offset="0%" stop-color="#ffffff"/><stop offset="70%" stop-color="#f4f1ec"/><stop offset="100%" stop-color="#e9e4dc"/>
+  </radialGradient></defs>
+  <rect width="600" height="600" fill="url(#s)"/>
+  <ellipse cx="300" cy="474" rx="190" ry="26" fill="#000000" opacity="0.08"/>
+  <path d="M150,430 C230,414 360,410 440,420 C452,421 452,432 440,434 L160,438 C148,438 142,434 150,430 Z" fill="#C9A227" stroke="#3a332b" stroke-width="2.5"/><path d="M418,432 L444,432 L438,486 L416,480 Z" fill="#C9A227" stroke="#3a332b" stroke-width="2.5"/><path d="M196,428 Q262,384 326,420" fill="none" stroke="#C9A227" stroke-width="14" stroke-linecap="round"/><path d="M250,428 Q312,378 372,418" fill="none" stroke="#C9A227" stroke-width="14" stroke-linecap="round"/><path d="M155,392 C235,376 345,372 452,384" fill="none" stroke="#00000030" stroke-width="10" stroke-dasharray="2 12"/>
+  <text x="300" y="558" text-anchor="middle" font-family="Georgia, serif" font-size="21" fill="#8a8175" letter-spacing="1.5">sole</text>
+</svg>

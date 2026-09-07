@@ -17,19 +17,10 @@
         "ar": "حذاء مدبّب من الجلد الطبيعي بكعب ٨٫٥ سم ونعل داخلي مبطّن بخفّة. القياس مطابق للمعتاد."
       },
       "care": { "en": "Wipe clean with a dry cloth.", "ar": "تنظّف بقطعة قماش جافة." },
-      "options": {
-        "colour": ["BLK", "BEI"],
-        "size": ["35", "36", "37", "38", "39", "40", "41"]
-      },
+      "options": { "colour": ["BLK", "BEI"], "size": ["35", "36", "37", "38", "39", "40", "41"] },
       "colours": [
-        {
-          "code": "BLK", "en": "Black", "ar": "أسود", "hex": "111111",
-          "images": ["hl014-blk-1.svg", "hl014-blk-2.svg", "hl014-blk-3.svg", "hl014-blk-4.svg"]
-        },
-        {
-          "code": "BEI", "en": "Beige", "ar": "بيج", "hex": "D7C4A3",
-          "images": ["hl014-bei-1.svg", "hl014-bei-2.svg", "hl014-bei-3.svg", "hl014-bei-4.svg"]
-        }
+        { "code": "BLK", "en": "Black", "ar": "أسود", "hex": "111111", "images": ["hl014-blk-1.svg", "hl014-blk-2.svg", "hl014-blk-3.svg", "hl014-blk-4.svg"] },
+        { "code": "BEI", "en": "Beige", "ar": "بيج", "hex": "D7C4A3", "images": ["hl014-bei-1.svg", "hl014-bei-2.svg", "hl014-bei-3.svg", "hl014-bei-4.svg"] }
       ],
       "variants": [
         { "sku": "HL014-BLK-35", "colour": "BLK", "size": "35", "stock": 1 },
@@ -46,6 +37,209 @@
         { "sku": "HL014-BEI-39", "colour": "BEI", "size": "39", "stock": 2 },
         { "sku": "HL014-BEI-40", "colour": "BEI", "size": "40", "stock": 1 },
         { "sku": "HL014-BEI-41", "colour": "BEI", "size": "41", "stock": 0 }
+      ]
+    },
+    {
+      "handle": "fl021-mira-ballet-flat",
+      "style": "FL021",
+      "kind": "shoe",
+      "title": { "en": "Mira ballet flat", "ar": "حذاء ميرا باليرينا" },
+      "type": { "en": "Flats", "ar": "فلات" },
+      "category_code": "FLAT",
+      "material": { "en": "Suede", "ar": "شامواه" },
+      "heel_cm": 1.0,
+      "heel_band": { "en": "Flat (0–1 cm)", "ar": "بدون كعب (٠-١ سم)" },
+      "price": 55.0,
+      "compare_at": null,
+      "description": {
+        "en": "Soft suede ballet flat with a padded footbed and a slim almond toe. Everyday comfort that stays neat.",
+        "ar": "حذاء باليرينا من الشامواه الناعم بنعل داخلي مبطّن ومقدّمة لوزية رفيعة. راحة يومية بمظهر أنيق."
+      },
+      "care": { "en": "Brush gently with a suede brush.", "ar": "تُنظّف بفرشاة شامواه بلطف." },
+      "options": { "colour": ["BLK", "PNK", "NAV"], "size": ["35", "36", "37", "38", "39", "40", "41"] },
+      "colours": [
+        { "code": "BLK", "en": "Black", "ar": "أسود", "hex": "111111", "images": ["fl021-blk-1.svg", "fl021-blk-2.svg", "fl021-blk-3.svg", "fl021-blk-4.svg"] },
+        { "code": "PNK", "en": "Pink", "ar": "وردي", "hex": "E8A0B4", "images": ["fl021-pnk-1.svg", "fl021-pnk-2.svg", "fl021-pnk-3.svg", "fl021-pnk-4.svg"] },
+        { "code": "NAV", "en": "Navy", "ar": "كحلي", "hex": "1F2A44", "images": ["fl021-nav-1.svg", "fl021-nav-2.svg", "fl021-nav-3.svg", "fl021-nav-4.svg"] }
+      ],
+      "variants": [
+        { "sku": "FL021-BLK-35", "colour": "BLK", "size": "35", "stock": 2 },
+        { "sku": "FL021-BLK-36", "colour": "BLK", "size": "36", "stock": 3 },
+        { "sku": "FL021-BLK-37", "colour": "BLK", "size": "37", "stock": 5 },
+        { "sku": "FL021-BLK-38", "colour": "BLK", "size": "38", "stock": 6 },
+        { "sku": "FL021-BLK-39", "colour": "BLK", "size": "39", "stock": 6 },
+        { "sku": "FL021-BLK-40", "colour": "BLK", "size": "40", "stock": 4 },
+        { "sku": "FL021-BLK-41", "colour": "BLK", "size": "41", "stock": 2 },
+        { "sku": "FL021-PNK-35", "colour": "PNK", "size": "35", "stock": 1 },
+        { "sku": "FL021-PNK-36", "colour": "PNK", "size": "36", "stock": 2 },
+        { "sku": "FL021-PNK-37", "colour": "PNK", "size": "37", "stock": 3 },
+        { "sku": "FL021-PNK-38", "colour": "PNK", "size": "38", "stock": 4 },
+        { "sku": "FL021-PNK-39", "colour": "PNK", "size": "39", "stock": 3 },
+        { "sku": "FL021-PNK-40", "colour": "PNK", "size": "40", "stock": 2 },
+        { "sku": "FL021-PNK-41", "colour": "PNK", "size": "41", "stock": 1 },
+        { "sku": "FL021-NAV-35", "colour": "NAV", "size": "35", "stock": 0 },
+        { "sku": "FL021-NAV-36", "colour": "NAV", "size": "36", "stock": 1 },
+        { "sku": "FL021-NAV-37", "colour": "NAV", "size": "37", "stock": 2 },
+        { "sku": "FL021-NAV-38", "colour": "NAV", "size": "38", "stock": 3 },
+        { "sku": "FL021-NAV-39", "colour": "NAV", "size": "39", "stock": 2 },
+        { "sku": "FL021-NAV-40", "colour": "NAV", "size": "40", "stock": 1 },
+        { "sku": "FL021-NAV-41", "colour": "NAV", "size": "41", "stock": 0 }
+      ]
+    },
+    {
+      "handle": "sn009-rio-court-sneaker",
+      "style": "SN009",
+      "kind": "shoe",
+      "title": { "en": "Río court sneaker", "ar": "سنيكرز ريو" },
+      "type": { "en": "Sneakers", "ar": "سنيكرز" },
+      "category_code": "SNKR",
+      "material": { "en": "Genuine leather", "ar": "جلد طبيعي" },
+      "heel_cm": 2.0,
+      "heel_band": { "en": "Low (2–4 cm)", "ar": "كعب منخفض (٢-٤ سم)" },
+      "price": 68.0,
+      "compare_at": null,
+      "description": {
+        "en": "Clean leather court sneaker with a cushioned sole. Pairs with everything from jeans to a dress.",
+        "ar": "سنيكرز جلدية بتصميم كلاسيكي ونعل مريح. تناسب الجينز والفستان على حدّ سواء."
+      },
+      "care": { "en": "Wipe clean with a dry cloth.", "ar": "تنظّف بقطعة قماش جافة." },
+      "options": { "colour": ["WHT", "GRN"], "size": ["35", "36", "37", "38", "39", "40", "41"] },
+      "colours": [
+        { "code": "WHT", "en": "White", "ar": "أبيض", "hex": "F2EFE9", "images": ["sn009-wht-1.svg", "sn009-wht-2.svg", "sn009-wht-3.svg", "sn009-wht-4.svg"] },
+        { "code": "GRN", "en": "Green", "ar": "أخضر", "hex": "2E6B4F", "images": ["sn009-grn-1.svg", "sn009-grn-2.svg", "sn009-grn-3.svg", "sn009-grn-4.svg"] }
+      ],
+      "variants": [
+        { "sku": "SN009-WHT-35", "colour": "WHT", "size": "35", "stock": 1 },
+        { "sku": "SN009-WHT-36", "colour": "WHT", "size": "36", "stock": 3 },
+        { "sku": "SN009-WHT-37", "colour": "WHT", "size": "37", "stock": 4 },
+        { "sku": "SN009-WHT-38", "colour": "WHT", "size": "38", "stock": 5 },
+        { "sku": "SN009-WHT-39", "colour": "WHT", "size": "39", "stock": 5 },
+        { "sku": "SN009-WHT-40", "colour": "WHT", "size": "40", "stock": 4 },
+        { "sku": "SN009-WHT-41", "colour": "WHT", "size": "41", "stock": 2 },
+        { "sku": "SN009-GRN-35", "colour": "GRN", "size": "35", "stock": 0 },
+        { "sku": "SN009-GRN-36", "colour": "GRN", "size": "36", "stock": 1 },
+        { "sku": "SN009-GRN-37", "colour": "GRN", "size": "37", "stock": 2 },
+        { "sku": "SN009-GRN-38", "colour": "GRN", "size": "38", "stock": 2 },
+        { "sku": "SN009-GRN-39", "colour": "GRN", "size": "39", "stock": 1 },
+        { "sku": "SN009-GRN-40", "colour": "GRN", "size": "40", "stock": 1 },
+        { "sku": "SN009-GRN-41", "colour": "GRN", "size": "41", "stock": 0 }
+      ]
+    },
+    {
+      "handle": "sd012-isla-strappy-sandal",
+      "style": "SD012",
+      "kind": "shoe",
+      "title": { "en": "Isla strappy sandal", "ar": "صندل إيسلا" },
+      "type": { "en": "Sandals", "ar": "صندل" },
+      "category_code": "SAND",
+      "material": { "en": "Patent", "ar": "جلد لامع" },
+      "heel_cm": 6.0,
+      "heel_band": { "en": "Mid (5–7 cm)", "ar": "كعب متوسط (٥-٧ سم)" },
+      "price": 62.0,
+      "compare_at": null,
+      "description": {
+        "en": "Patent strappy sandal on a 6 cm block heel, secured with an adjustable ankle strap.",
+        "ar": "صندل بأحزمة من الجلد اللامع وكعب عريض ٦ سم مع حزام كاحل قابل للتعديل."
+      },
+      "care": { "en": "Wipe clean with a dry cloth.", "ar": "تنظّف بقطعة قماش جافة." },
+      "options": { "colour": ["GLD", "RED"], "size": ["35", "36", "37", "38", "39", "40", "41"] },
+      "colours": [
+        { "code": "GLD", "en": "Gold", "ar": "ذهبي", "hex": "C9A227", "images": ["sd012-gld-1.svg", "sd012-gld-2.svg", "sd012-gld-3.svg", "sd012-gld-4.svg"] },
+        { "code": "RED", "en": "Red", "ar": "أحمر", "hex": "B3202C", "images": ["sd012-red-1.svg", "sd012-red-2.svg", "sd012-red-3.svg", "sd012-red-4.svg"] }
+      ],
+      "variants": [
+        { "sku": "SD012-GLD-35", "colour": "GLD", "size": "35", "stock": 1 },
+        { "sku": "SD012-GLD-36", "colour": "GLD", "size": "36", "stock": 2 },
+        { "sku": "SD012-GLD-37", "colour": "GLD", "size": "37", "stock": 2 },
+        { "sku": "SD012-GLD-38", "colour": "GLD", "size": "38", "stock": 3 },
+        { "sku": "SD012-GLD-39", "colour": "GLD", "size": "39", "stock": 2 },
+        { "sku": "SD012-GLD-40", "colour": "GLD", "size": "40", "stock": 1 },
+        { "sku": "SD012-GLD-41", "colour": "GLD", "size": "41", "stock": 0 },
+        { "sku": "SD012-RED-35", "colour": "RED", "size": "35", "stock": 0 },
+        { "sku": "SD012-RED-36", "colour": "RED", "size": "36", "stock": 1 },
+        { "sku": "SD012-RED-37", "colour": "RED", "size": "37", "stock": 2 },
+        { "sku": "SD012-RED-38", "colour": "RED", "size": "38", "stock": 2 },
+        { "sku": "SD012-RED-39", "colour": "RED", "size": "39", "stock": 1 },
+        { "sku": "SD012-RED-40", "colour": "RED", "size": "40", "stock": 0 },
+        { "sku": "SD012-RED-41", "colour": "RED", "size": "41", "stock": 0 }
+      ]
+    },
+    {
+      "handle": "bt004-aspen-ankle-boot",
+      "style": "BT004",
+      "kind": "shoe",
+      "title": { "en": "Aspen ankle boot", "ar": "بوت أسبن" },
+      "type": { "en": "Boots", "ar": "بوت" },
+      "category_code": "BOOT",
+      "material": { "en": "Genuine leather", "ar": "جلد طبيعي" },
+      "heel_cm": 5.0,
+      "heel_band": { "en": "Mid (5–7 cm)", "ar": "كعب متوسط (٥-٧ سم)" },
+      "price": 120.0,
+      "compare_at": null,
+      "description": {
+        "en": "Leather ankle boot with a 5 cm stacked heel and an inside zip. A year-round staple.",
+        "ar": "بوت جلدي بكعب ٥ سم وسحّاب جانبي. قطعة أساسية لكل المواسم."
+      },
+      "care": { "en": "Wipe clean with a dry cloth.", "ar": "تنظّف بقطعة قماش جافة." },
+      "options": { "colour": ["BLK", "BRN"], "size": ["35", "36", "37", "38", "39", "40", "41"] },
+      "colours": [
+        { "code": "BLK", "en": "Black", "ar": "أسود", "hex": "111111", "images": ["bt004-blk-1.svg", "bt004-blk-2.svg", "bt004-blk-3.svg", "bt004-blk-4.svg"] },
+        { "code": "BRN", "en": "Brown", "ar": "بني", "hex": "5A3E2B", "images": ["bt004-brn-1.svg", "bt004-brn-2.svg", "bt004-brn-3.svg", "bt004-brn-4.svg"] }
+      ],
+      "variants": [
+        { "sku": "BT004-BLK-35", "colour": "BLK", "size": "35", "stock": 1 },
+        { "sku": "BT004-BLK-36", "colour": "BLK", "size": "36", "stock": 2 },
+        { "sku": "BT004-BLK-37", "colour": "BLK", "size": "37", "stock": 3 },
+        { "sku": "BT004-BLK-38", "colour": "BLK", "size": "38", "stock": 4 },
+        { "sku": "BT004-BLK-39", "colour": "BLK", "size": "39", "stock": 4 },
+        { "sku": "BT004-BLK-40", "colour": "BLK", "size": "40", "stock": 3 },
+        { "sku": "BT004-BLK-41", "colour": "BLK", "size": "41", "stock": 1 },
+        { "sku": "BT004-BRN-35", "colour": "BRN", "size": "35", "stock": 0 },
+        { "sku": "BT004-BRN-36", "colour": "BRN", "size": "36", "stock": 1 },
+        { "sku": "BT004-BRN-37", "colour": "BRN", "size": "37", "stock": 2 },
+        { "sku": "BT004-BRN-38", "colour": "BRN", "size": "38", "stock": 2 },
+        { "sku": "BT004-BRN-39", "colour": "BRN", "size": "39", "stock": 2 },
+        { "sku": "BT004-BRN-40", "colour": "BRN", "size": "40", "stock": 1 },
+        { "sku": "BT004-BRN-41", "colour": "BRN", "size": "41", "stock": 0 }
+      ]
+    },
+    {
+      "handle": "wg003-dune-espadrille-wedge",
+      "style": "WG003",
+      "kind": "shoe",
+      "title": { "en": "Dune espadrille wedge", "ar": "وِدج ديون إسبادريل" },
+      "type": { "en": "Wedges", "ar": "وِدج" },
+      "category_code": "WEDG",
+      "material": { "en": "Canvas", "ar": "قماش" },
+      "heel_cm": 8.0,
+      "heel_band": { "en": "High (8–10 cm)", "ar": "كعب عالٍ (٨-١٠ سم)" },
+      "price": 58.0,
+      "compare_at": null,
+      "description": {
+        "en": "Canvas espadrille wedge with a jute-wrapped 8 cm sole and an adjustable ankle tie.",
+        "ar": "وِدج إسبادريل من القماش بنعل ٨ سم ملفوف بالجوت ورباط كاحل قابل للتعديل."
+      },
+      "care": { "en": "Spot clean with a damp cloth.", "ar": "تُنظّف موضعياً بقطعة قماش مبلّلة." },
+      "options": { "colour": ["BEI", "BLK"], "size": ["35", "36", "37", "38", "39", "40", "41"] },
+      "colours": [
+        { "code": "BEI", "en": "Beige", "ar": "بيج", "hex": "D7C4A3", "images": ["wg003-bei-1.svg", "wg003-bei-2.svg", "wg003-bei-3.svg", "wg003-bei-4.svg"] },
+        { "code": "BLK", "en": "Black", "ar": "أسود", "hex": "111111", "images": ["wg003-blk-1.svg", "wg003-blk-2.svg", "wg003-blk-3.svg", "wg003-blk-4.svg"] }
+      ],
+      "variants": [
+        { "sku": "WG003-BEI-35", "colour": "BEI", "size": "35", "stock": 1 },
+        { "sku": "WG003-BEI-36", "colour": "BEI", "size": "36", "stock": 2 },
+        { "sku": "WG003-BEI-37", "colour": "BEI", "size": "37", "stock": 3 },
+        { "sku": "WG003-BEI-38", "colour": "BEI", "size": "38", "stock": 3 },
+        { "sku": "WG003-BEI-39", "colour": "BEI", "size": "39", "stock": 2 },
+        { "sku": "WG003-BEI-40", "colour": "BEI", "size": "40", "stock": 1 },
+        { "sku": "WG003-BEI-41", "colour": "BEI", "size": "41", "stock": 0 },
+        { "sku": "WG003-BLK-35", "colour": "BLK", "size": "35", "stock": 0 },
+        { "sku": "WG003-BLK-36", "colour": "BLK", "size": "36", "stock": 2 },
+        { "sku": "WG003-BLK-37", "colour": "BLK", "size": "37", "stock": 2 },
+        { "sku": "WG003-BLK-38", "colour": "BLK", "size": "38", "stock": 3 },
+        { "sku": "WG003-BLK-39", "colour": "BLK", "size": "39", "stock": 2 },
+        { "sku": "WG003-BLK-40", "colour": "BLK", "size": "40", "stock": 2 },
+        { "sku": "WG003-BLK-41", "colour": "BLK", "size": "41", "stock": 1 }
       ]
     },
     {
@@ -66,23 +260,100 @@
         "ar": "حقيبة كروس بودي متماسكة من الجلد الطبيعي بحزام قابل للتعديل بطول ١٢٠ سم وبطانة قماش من الداخل."
       },
       "care": { "en": "Wipe clean with a dry cloth.", "ar": "تنظّف بقطعة قماش جافة." },
-      "options": {
-        "colour": ["TAN", "BLK"],
-        "size": ["OS"]
-      },
+      "options": { "colour": ["TAN", "BLK"], "size": ["OS"] },
       "colours": [
-        {
-          "code": "TAN", "en": "Tan", "ar": "كاميل", "hex": "B08D57",
-          "images": ["bg007-tan-1.svg", "bg007-tan-2.svg", "bg007-tan-3.svg", "bg007-tan-4.svg"]
-        },
-        {
-          "code": "BLK", "en": "Black", "ar": "أسود", "hex": "111111",
-          "images": ["bg007-blk-1.svg", "bg007-blk-2.svg", "bg007-blk-3.svg", "bg007-blk-4.svg"]
-        }
+        { "code": "TAN", "en": "Tan", "ar": "كاميل", "hex": "B08D57", "images": ["bg007-tan-1.svg", "bg007-tan-2.svg", "bg007-tan-3.svg", "bg007-tan-4.svg"] },
+        { "code": "BLK", "en": "Black", "ar": "أسود", "hex": "111111", "images": ["bg007-blk-1.svg", "bg007-blk-2.svg", "bg007-blk-3.svg", "bg007-blk-4.svg"] }
       ],
       "variants": [
         { "sku": "BG007-TAN-OS", "colour": "TAN", "size": "OS", "stock": 4 },
         { "sku": "BG007-BLK-OS", "colour": "BLK", "size": "OS", "stock": 6 }
+      ]
+    },
+    {
+      "handle": "tt005-beirut-tote",
+      "style": "TT005",
+      "kind": "bag",
+      "title": { "en": "Beirut tote", "ar": "حقيبة بيروت توت" },
+      "type": { "en": "Tote", "ar": "توت" },
+      "category_code": "TOTE",
+      "material": { "en": "Canvas", "ar": "قماش" },
+      "dimensions": { "en": "38 W × 30 H × 14 D cm", "ar": "٣٨ عرض × ٣٠ ارتفاع × ١٤ عمق سم" },
+      "strap_drop": 26,
+      "lining": { "en": "Cotton lining, laptop sleeve", "ar": "بطانة قطنية، جيب للابتوب" },
+      "price": 78.0,
+      "compare_at": null,
+      "description": {
+        "en": "Roomy canvas tote with leather handles and a zip-top closure. Fits a laptop and a day's errands.",
+        "ar": "حقيبة توت واسعة من القماش بمقابض جلدية وإغلاق بسحّاب علوي. تتّسع للابتوب وأغراض اليوم."
+      },
+      "care": { "en": "Spot clean with a damp cloth.", "ar": "تُنظّف موضعياً بقطعة قماش مبلّلة." },
+      "options": { "colour": ["NAV", "OLV", "BLK"], "size": ["OS"] },
+      "colours": [
+        { "code": "NAV", "en": "Navy", "ar": "كحلي", "hex": "1F2A44", "images": ["tt005-nav-1.svg", "tt005-nav-2.svg", "tt005-nav-3.svg", "tt005-nav-4.svg"] },
+        { "code": "OLV", "en": "Olive", "ar": "زيتي", "hex": "6B6B3A", "images": ["tt005-olv-1.svg", "tt005-olv-2.svg", "tt005-olv-3.svg", "tt005-olv-4.svg"] },
+        { "code": "BLK", "en": "Black", "ar": "أسود", "hex": "111111", "images": ["tt005-blk-1.svg", "tt005-blk-2.svg", "tt005-blk-3.svg", "tt005-blk-4.svg"] }
+      ],
+      "variants": [
+        { "sku": "TT005-NAV-OS", "colour": "NAV", "size": "OS", "stock": 5 },
+        { "sku": "TT005-OLV-OS", "colour": "OLV", "size": "OS", "stock": 3 },
+        { "sku": "TT005-BLK-OS", "colour": "BLK", "size": "OS", "stock": 7 }
+      ]
+    },
+    {
+      "handle": "cl002-yasmine-clutch",
+      "style": "CL002",
+      "kind": "bag",
+      "title": { "en": "Yasmine clutch", "ar": "كلاتش ياسمين" },
+      "type": { "en": "Clutch", "ar": "كلاتش" },
+      "category_code": "CLCH",
+      "material": { "en": "Satin", "ar": "ساتان" },
+      "dimensions": { "en": "26 W × 14 H × 5 D cm", "ar": "٢٦ عرض × ١٤ ارتفاع × ٥ عمق سم" },
+      "strap_drop": null,
+      "lining": { "en": "Satin lining", "ar": "بطانة ساتان" },
+      "price": 48.0,
+      "compare_at": null,
+      "description": {
+        "en": "Satin evening clutch with a concealed magnetic clasp and a fine chain you can tuck inside.",
+        "ar": "كلاتش سهرة من الساتان بإغلاق مغناطيسي مخفي وسلسلة رفيعة يمكن إخفاؤها في الداخل."
+      },
+      "care": { "en": "Spot clean only.", "ar": "تُنظّف موضعياً فقط." },
+      "options": { "colour": ["BRG", "SLV"], "size": ["OS"] },
+      "colours": [
+        { "code": "BRG", "en": "Burgundy", "ar": "عنابي", "hex": "6E1E2C", "images": ["cl002-brg-1.svg", "cl002-brg-2.svg", "cl002-brg-3.svg", "cl002-brg-4.svg"] },
+        { "code": "SLV", "en": "Silver", "ar": "فضي", "hex": "B8B8B8", "images": ["cl002-slv-1.svg", "cl002-slv-2.svg", "cl002-slv-3.svg", "cl002-slv-4.svg"] }
+      ],
+      "variants": [
+        { "sku": "CL002-BRG-OS", "colour": "BRG", "size": "OS", "stock": 4 },
+        { "sku": "CL002-SLV-OS", "colour": "SLV", "size": "OS", "stock": 2 }
+      ]
+    },
+    {
+      "handle": "sh006-noor-shoulder-bag",
+      "style": "SH006",
+      "kind": "bag",
+      "title": { "en": "Noor shoulder bag", "ar": "حقيبة نور للكتف" },
+      "type": { "en": "Shoulder bag", "ar": "شنطة كتف" },
+      "category_code": "SHLD",
+      "material": { "en": "Suede", "ar": "شامواه" },
+      "dimensions": { "en": "30 W × 22 H × 10 D cm", "ar": "٣٠ عرض × ٢٢ ارتفاع × ١٠ عمق سم" },
+      "strap_drop": 55,
+      "lining": { "en": "Suede lining, 1 slip pocket", "ar": "بطانة شامواه، جيب واحد" },
+      "price": 88.0,
+      "compare_at": null,
+      "description": {
+        "en": "Structured suede shoulder bag with an adjustable strap and a suede-lined interior.",
+        "ar": "حقيبة كتف متماسكة من الشامواه بحزام قابل للتعديل وبطانة من الشامواه."
+      },
+      "care": { "en": "Brush gently with a suede brush.", "ar": "تُنظّف بفرشاة شامواه بلطف." },
+      "options": { "colour": ["BRN", "GRY"], "size": ["OS"] },
+      "colours": [
+        { "code": "BRN", "en": "Brown", "ar": "بني", "hex": "5A3E2B", "images": ["sh006-brn-1.svg", "sh006-brn-2.svg", "sh006-brn-3.svg", "sh006-brn-4.svg"] },
+        { "code": "GRY", "en": "Grey", "ar": "رمادي", "hex": "8A8A8A", "images": ["sh006-gry-1.svg", "sh006-gry-2.svg", "sh006-gry-3.svg", "sh006-gry-4.svg"] }
+      ],
+      "variants": [
+        { "sku": "SH006-BRN-OS", "colour": "BRN", "size": "OS", "stock": 3 },
+        { "sku": "SH006-GRY-OS", "colour": "GRY", "size": "OS", "stock": 5 }
       ]
     }
   ]

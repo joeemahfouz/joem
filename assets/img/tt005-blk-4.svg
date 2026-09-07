@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="held">
+  <defs><radialGradient id="s" cx="50%" cy="38%" r="75%">
+    <stop offset="0%" stop-color="#ffffff"/><stop offset="70%" stop-color="#f4f1ec"/><stop offset="100%" stop-color="#e9e4dc"/>
+  </radialGradient></defs>
+  <rect width="600" height="600" fill="url(#s)"/>
+  <ellipse cx="300" cy="474" rx="190" ry="26" fill="#000000" opacity="0.08"/>
+  <line x1="300" y1="66" x2="300" y2="150" stroke="#d8d0c4" stroke-width="40" stroke-linecap="round"/><path d="M236,306 Q262,236 300,306" fill="none" stroke="#0a0a0a" stroke-width="12"/><path d="M300,306 Q338,236 364,306" fill="none" stroke="#0a0a0a" stroke-width="12"/><path d="M182,306 h236 l-14,164 h-208 z" fill="#111111" stroke="none" stroke-width="0"/><line x1="188" y1="330" x2="412" y2="330" stroke="#00000018" stroke-width="4"/>
+  <text x="300" y="558" text-anchor="middle" font-family="Georgia, serif" font-size="21" fill="#8a8175" letter-spacing="1.5">held</text>
+</svg>
