@@ -8,7 +8,7 @@
 const CONFIG = {
   brand: "SOFIA",
   tagline: { en: "Shoes & bags", ar: "أحذية وحقائب" },
-  whatsapp: "96170000000",          // TODO: real shop WhatsApp number, digits only, incl. country code
+  whatsapp: "96171041967",          // shop WhatsApp number, digits only, incl. country code
   currency: { code: "USD", symbol: "$" },
   deliveryFee: 3,                    // one flat fee for all of Lebanon
   freeDeliveryOver: null,           // e.g. 100 to offer free delivery over $100, or null
