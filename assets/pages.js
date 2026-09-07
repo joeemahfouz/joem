@@ -118,7 +118,8 @@ async function initShop() {
 
     document.getElementById("app").innerHTML = `
       <section class="hero"><div class="wrap"><div class="hero__inner">
-        <h1>${store.lang === "ar" ? "أحذية وحقائب مصنوعة لتُلبَس" : "Shoes & bags, made to be worn"}</h1>
+        <p class="hero__eyebrow">${store.lang === "ar" ? "منتجات جلدية · بيروت" : "Leather goods · Beirut"}</p>
+        <h1>${store.lang === "ar" ? "أحذية وحقائب مصنوعة لتُلبَس" : "Shoes &amp; bags, made to be <em>worn</em>"}</h1>
         <p>${t("cod_note")}</p>
         <div class="pill-row">
           <span class="pill">🇱🇧 ${store.lang === "ar" ? "توصيل لكل لبنان" : "Delivery across Lebanon"}</span>
