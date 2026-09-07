@@ -33,6 +33,9 @@ const STR = {
     checkout_wa: "Order on WhatsApp", cod_note: "Cash on delivery across Lebanon. We confirm every order by WhatsApp before we send it.",
     remove: "Remove", qty: "Qty", one_size: "One size",
     view_bag: "View bag", est_delivery: "Beirut {b} working days · other areas {o} working days",
+    filter_category: "Category", filter_colour: "Colour", filter_all: "All",
+    clear_filters: "Clear filters", no_results: "No products match these filters.",
+    results_one: "1 product", results_many: "{n} products",
   },
   ar: {
     dir: "rtl",
@@ -48,6 +51,9 @@ const STR = {
     checkout_wa: "اطلبي عبر واتساب", cod_note: "الدفع عند الاستلام في كل لبنان. نؤكّد كل طلب عبر واتساب قبل إرساله.",
     remove: "إزالة", qty: "الكمية", one_size: "قياس واحد",
     view_bag: "عرض الحقيبة", est_delivery: "بيروت {b} يوم عمل · باقي المناطق {o} أيام عمل",
+    filter_category: "الفئة", filter_colour: "اللون", filter_all: "الكل",
+    clear_filters: "مسح الفلاتر", no_results: "لا توجد منتجات مطابقة لهذه الفلاتر.",
+    results_one: "منتج واحد", results_many: "{n} منتجات",
   },
 };
 

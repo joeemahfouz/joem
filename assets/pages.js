@@ -13,12 +13,15 @@ function swatchDots(p) {
     .map((c) => `<span class="dot" style="background:#${c.hex}" title="${L(c)}"></span>`)
     .join("")}</span>`;
 }
-function productCard(p) {
+function productCard(p, preferred) {
   const root = document.body.dataset.root || "";
   const sold = !productInStock(p);
+  // if a colour filter is active and this product has one, show that colour
+  const match = preferred && preferred.size ? p.colours.find((c) => preferred.has(c.code)) : null;
+  const img = match ? match.images[0] : firstImage(p);
   return `
     <a class="card" href="${root}product.html?handle=${p.handle}">
-      <div class="card__media"><img src="${root}assets/img/${firstImage(p)}" alt="${L(p.title)}" loading="lazy"></div>
+      <div class="card__media"><img src="${root}assets/img/${img}" alt="${L(p.title)}" loading="lazy"></div>
       <div class="card__body">
         <span class="card__type">${L(p.type)}</span>
         <span class="card__title">${L(p.title)}</span>
@@ -33,14 +36,49 @@ function productCard(p) {
 /* ---- shop / home ---------------------------------------------------------- */
 async function initShop() {
   await loadProducts();
+
+  // facets derived from the actual catalogue (never show a filter that matches nothing)
+  const categories = [];
+  const catSeen = new Set();
+  const colours = [];
+  const colSeen = new Set();
+  store.products.forEach((p) => {
+    if (!catSeen.has(p.category_code)) { catSeen.add(p.category_code); categories.push({ code: p.category_code, label: p.type }); }
+    p.colours.forEach((c) => { if (!colSeen.has(c.code)) { colSeen.add(c.code); colours.push(c); } });
+  });
+
+  const state = { cat: "ALL", colours: new Set() };
+
+  const matches = (p) =>
+    (state.cat === "ALL" || p.category_code === state.cat) &&
+    (state.colours.size === 0 || p.colours.some((c) => state.colours.has(c.code)));
+
   const render = () => {
-    const shoes = store.products.filter((p) => p.kind === "shoe");
-    const bags = store.products.filter((p) => p.kind === "bag");
+    const active = state.cat !== "ALL" || state.colours.size > 0;
+    const filtered = store.products.filter(matches);
+    const shoes = filtered.filter((p) => p.kind === "shoe");
+    const bags = filtered.filter((p) => p.kind === "bag");
+
     const section = (id, title, items) => items.length ? `
       <section id="${id}">
         <div class="section-title"><h2>${title}</h2></div>
-        <div class="grid">${items.map(productCard).join("")}</div>
+        <div class="grid">${items.map((p) => productCard(p, state.colours)).join("")}</div>
       </section>` : "";
+
+    const catChips = [{ code: "ALL", label: { en: t("filter_all"), ar: t("filter_all") } }, ...categories]
+      .map((c) => `<button class="chip" data-cat="${c.code}" aria-pressed="${state.cat === c.code}">${L(c.label)}</button>`).join("");
+    const colChips = colours
+      .map((c) => `<button class="chip-dot" data-col="${c.code}" aria-pressed="${state.colours.has(c.code)}">
+        <span class="dot" style="background:#${c.hex}"></span>${L(c)}</button>`).join("");
+
+    const resultsLine = active
+      ? `<p class="results-line">${filtered.length === 1 ? t("results_one") : t("results_many").replace("{n}", filtered.length)}</p>`
+      : "";
+    const body = filtered.length
+      ? `${resultsLine}${section("shoes", t("shoes"), shoes)}${section("bags", t("bags"), bags)}`
+      : `<div class="empty"><p style="font-size:19px">${t("no_results")}</p>
+           <button class="btn btn--ghost" data-clear>${t("clear_filters")}</button></div>`;
+
     document.getElementById("app").innerHTML = `
       <section class="hero"><div class="wrap"><div class="hero__inner">
         <h1>${store.lang === "ar" ? "أحذية وحقائب مصنوعة لتُلبَس" : "Shoes & bags, made to be worn"}</h1>
@@ -52,10 +90,22 @@ async function initShop() {
         </div>
       </div></div></section>
       <div class="wrap">
-        ${section("shoes", t("shoes"), shoes)}
-        ${section("bags", t("bags"), bags)}
+        <div class="filters">
+          <div class="filter-group"><span class="filter-label">${t("filter_category")}</span>${catChips}</div>
+          <div class="filter-group"><span class="filter-label">${t("filter_colour")}</span>${colChips}</div>
+          <button class="clear" data-clear ${active ? "" : "hidden"}>${t("clear_filters")}</button>
+        </div>
+        ${body}
       </div>`;
+
+    document.querySelectorAll("[data-cat]").forEach((b) =>
+      b.onclick = () => { state.cat = b.dataset.cat; render(); });
+    document.querySelectorAll("[data-col]").forEach((b) =>
+      b.onclick = () => { const c = b.dataset.col; state.colours.has(c) ? state.colours.delete(c) : state.colours.add(c); render(); });
+    document.querySelectorAll("[data-clear]").forEach((b) =>
+      b.onclick = () => { state.cat = "ALL"; state.colours.clear(); render(); });
   };
+
   render();
   document.addEventListener("langchange", render);
 }

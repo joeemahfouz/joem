@@ -84,6 +84,21 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.2; }
 .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .pill { border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 6px 12px; font-size: 12.5px; color: var(--muted); }
 
+/* ---- filters ------------------------------------------------------------- */
+.filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; padding: 18px 0 6px; border-bottom: 1px solid var(--line); }
+.filter-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.filter-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 700; }
+.chip { border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 999px; padding: 7px 14px; font-size: 13.5px; cursor: pointer; font-weight: 600; transition: .12s ease; }
+.chip:hover { border-color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.chip-dot { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 999px; padding: 5px 12px 5px 6px; font-size: 13.5px; cursor: pointer; font-weight: 600; transition: .12s ease; }
+.chip-dot:hover { border-color: var(--ink); }
+.chip-dot .dot { width: 16px; height: 16px; }
+.chip-dot[aria-pressed="true"] { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink) inset; }
+.chip-dot[aria-pressed="true"]::after { content: "✓"; font-size: 12px; margin-inline-start: 2px; }
+.filters .clear { margin-inline-start: auto; background: none; border: 0; color: var(--accent); cursor: pointer; font-size: 13.5px; text-decoration: underline; }
+.results-line { color: var(--muted); font-size: 13.5px; margin: 14px 0 0; }
+
 /* ---- product grid -------------------------------------------------------- */
 .section-title { display: flex; align-items: baseline; justify-content: space-between; margin: 26px 0 16px; }
 .section-title h2 { font-size: 22px; margin: 0; }
