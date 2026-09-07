@@ -19,6 +19,12 @@ Shopify Payments is not available in Lebanon.
 
 - `data/products.json` — the two example products (Nora pump, Layla crossbody)
   with per-SKU stock, straight from the Shopify template & Opening Count.
+
+The shop page filters (category, colour, size, in-stock-only) are synced to
+the URL query string — e.g. `index.html?cat=HEEL&colour=BLK,BEI&size=38&instock=1`
+— so a filtered view can be shared or bookmarked, and the back button works.
+Unknown values in the query are ignored.
+
 - `assets/site.js` — config, bilingual UI strings, cart, WhatsApp checkout.
 - `assets/content.js` — long-form policy/size-guide copy (EN + AR).
 - `assets/pages.js` — page renderers.

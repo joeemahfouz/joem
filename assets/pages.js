@@ -50,7 +50,28 @@ async function initShop() {
   });
   const sizes = [...sizeSet].sort((a, b) => Number(a) - Number(b));
 
+  // ---- filter state <-> URL query (?cat=…&colour=BLK,BEI&size=35,38&instock=1)
   const state = { cat: "ALL", colours: new Set(), sizes: new Set(), inStock: false };
+  const readURL = () => {
+    const q = new URLSearchParams(location.search);
+    const cat = q.get("cat");
+    state.cat = cat && catSeen.has(cat) ? cat : "ALL";
+    const pick = (key, allowed) => new Set((q.get(key) || "").split(",").filter((v) => allowed.has(v)));
+    state.colours = pick("colour", colSeen);
+    state.sizes = pick("size", sizeSet);
+    state.inStock = q.get("instock") === "1";
+  };
+  const writeURL = () => {
+    const q = new URLSearchParams();
+    if (state.cat !== "ALL") q.set("cat", state.cat);
+    if (state.colours.size) q.set("colour", [...state.colours].join(","));
+    if (state.sizes.size) q.set("size", [...state.sizes].join(","));
+    if (state.inStock) q.set("instock", "1");
+    const qs = q.toString();
+    history.replaceState(null, "", location.pathname + (qs ? "?" + qs : "") + location.hash);
+  };
+  const apply = () => { writeURL(); render(); };
+  readURL();
 
   // a product matches if at least one of its variants satisfies every active
   // colour / size / stock constraint at once; category is a product-level facet.
@@ -116,19 +137,20 @@ async function initShop() {
       </div>`;
 
     document.querySelectorAll("[data-cat]").forEach((b) =>
-      b.onclick = () => { state.cat = b.dataset.cat; render(); });
+      b.onclick = () => { state.cat = b.dataset.cat; apply(); });
     document.querySelectorAll("[data-col]").forEach((b) =>
-      b.onclick = () => { const c = b.dataset.col; state.colours.has(c) ? state.colours.delete(c) : state.colours.add(c); render(); });
+      b.onclick = () => { const c = b.dataset.col; state.colours.has(c) ? state.colours.delete(c) : state.colours.add(c); apply(); });
     document.querySelectorAll("[data-size]").forEach((b) =>
-      b.onclick = () => { const s = b.dataset.size; state.sizes.has(s) ? state.sizes.delete(s) : state.sizes.add(s); render(); });
+      b.onclick = () => { const s = b.dataset.size; state.sizes.has(s) ? state.sizes.delete(s) : state.sizes.add(s); apply(); });
     const stockBtn = document.querySelector("[data-instock]");
-    if (stockBtn) stockBtn.onclick = () => { state.inStock = !state.inStock; render(); };
+    if (stockBtn) stockBtn.onclick = () => { state.inStock = !state.inStock; apply(); };
     document.querySelectorAll("[data-clear]").forEach((b) =>
-      b.onclick = () => { state.cat = "ALL"; state.colours.clear(); state.sizes.clear(); state.inStock = false; render(); });
+      b.onclick = () => { state.cat = "ALL"; state.colours.clear(); state.sizes.clear(); state.inStock = false; apply(); });
   };
 
   render();
   document.addEventListener("langchange", render);
+  window.addEventListener("popstate", () => { readURL(); render(); });
 }
 
 /* ---- product -------------------------------------------------------------- */
