@@ -1,4 +1,4 @@
-# SOFIA — bilingual storefront
+# BELLUCCI — bilingual storefront
 
 A static, no-build storefront for a Lebanese shoes & bags shop, built from the
 shop-build pack (Foundation Pack, Customer Text Pack, Photography Kit, Counter
@@ -59,7 +59,7 @@ page (copy, checkout, footer) updates:
 | `deliveryDays` | 1–2 / 2–4 | Delivery time promise |
 | `returnWindowDays` | `3` | Return window |
 | `currency` | USD `$` | Price currency |
-| `brand` / `instagram` | `SOFIA` / `yourshop` | Shop name & handle |
+| `brand` / `instagram` | `BELLUCCI` / `yourshop` | Shop name & handle |
 
 Return-delivery responsibility (customer pays, except faults) and refund vs.
 store-credit are written into `returns.html` copy in `assets/content.js`.

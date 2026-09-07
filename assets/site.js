@@ -1,12 +1,12 @@
 /* ==========================================================================
-   SOFIA storefront — application logic (vanilla JS, no build step)
+   BELLUCCI storefront — application logic (vanilla JS, no build step)
    --------------------------------------------------------------------------
    >>> REPLACE THESE PLACEHOLDER DECISIONS BEFORE GOING LIVE <<<
    They correspond to the six "Before you publish" decisions in the
    Customer Text Pack. Everything else on the site reads from here.
    ========================================================================== */
 const CONFIG = {
-  brand: "SOFIA",
+  brand: "BELLUCCI",
   tagline: { en: "Shoes & bags", ar: "أحذية وحقائب" },
   whatsapp: "96171041967",          // shop WhatsApp number, digits only, incl. country code
   currency: { code: "USD", symbol: "$" },
