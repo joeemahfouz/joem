@@ -52,7 +52,8 @@ async function initShop() {
   const sizes = [...sizeSet].sort((a, b) => Number(a) - Number(b));
 
   // ---- filter state <-> URL query (?cat=…&colour=BLK,BEI&size=35,38&instock=1)
-  const state = { cat: "ALL", colours: new Set(), sizes: new Set(), inStock: false };
+  // openDD tracks which filter dropdown is open (UI-only, not in the URL).
+  const state = { cat: "ALL", colours: new Set(), sizes: new Set(), inStock: false, openDD: null };
   const readURL = () => {
     const q = new URLSearchParams(location.search);
     const cat = q.get("cat");
@@ -96,11 +97,29 @@ async function initShop() {
         <div class="grid">${items.map((p) => productCard(p, state.colours)).join("")}</div>
       </section>` : "";
 
-    const catChips = [{ code: "ALL", label: { en: t("filter_all"), ar: t("filter_all") } }, ...categories]
-      .map((c) => `<button class="chip" data-cat="${c.code}" aria-pressed="${state.cat === c.code}">${L(c.label)}</button>`).join("");
-    const colChips = colours
-      .map((c) => `<button class="chip-dot" data-col="${c.code}" aria-pressed="${state.colours.has(c.code)}">
-        <span class="dot" style="background:#${c.hex}"></span>${L(c)}</button>`).join("");
+    // --- Category dropdown (single-select) ---
+    const catLabelOf = (code) => code === "ALL" ? t("filter_all") : L((categories.find((c) => c.code === code) || {}).label || { en: code });
+    const catOpts = [{ code: "ALL" }, ...categories.map((c) => ({ code: c.code }))]
+      .map((o) => `<button class="dd__opt" data-catopt="${o.code}" aria-selected="${state.cat === o.code}">${catLabelOf(o.code)}${state.cat === o.code ? '<span class="dd__check">✓</span>' : ""}</button>`).join("");
+    const catDD = `<div class="filter-group"><span class="filter-label">${t("filter_category")}</span>
+      <details class="dd" data-dd="cat" ${state.openDD === "cat" ? "open" : ""}>
+        <summary class="dd__btn" data-ddbtn="cat"><span class="cur">${catLabelOf(state.cat)}</span><span class="dd__caret" aria-hidden="true">▾</span></summary>
+        <div class="dd__panel">${catOpts}</div>
+      </details></div>`;
+
+    // --- Colour dropdown (multi-select) ---
+    const colCount = state.colours.size;
+    const colSummary = colCount === 0 ? t("filter_all")
+      : colCount === 1 ? L(colours.find((c) => state.colours.has(c.code)))
+      : t("n_selected").replace("{n}", colCount);
+    const colOpts = colours
+      .map((c) => `<button class="dd__opt" data-colopt="${c.code}" aria-checked="${state.colours.has(c.code)}"><span class="dot" style="background:#${c.hex}"></span>${L(c)}${state.colours.has(c.code) ? '<span class="dd__check">✓</span>' : ""}</button>`).join("");
+    const colDD = `<div class="filter-group"><span class="filter-label">${t("filter_colour")}</span>
+      <details class="dd" data-dd="colour" ${state.openDD === "colour" ? "open" : ""}>
+        <summary class="dd__btn" data-ddbtn="colour"><span class="cur">${colSummary}</span><span class="dd__caret" aria-hidden="true">▾</span></summary>
+        <div class="dd__panel">${colOpts}</div>
+      </details></div>`;
+
     const sizeChips = sizes
       .map((s) => `<button class="chip" data-size="${s}" aria-pressed="${state.sizes.has(s)}">${s}</button>`).join("");
     const sizeGroup = sizes.length
@@ -129,8 +148,8 @@ async function initShop() {
       </div></div></section>
       <div class="wrap">
         <div class="filters">
-          <div class="filter-group"><span class="filter-label">${t("filter_category")}</span>${catChips}</div>
-          <div class="filter-group"><span class="filter-label">${t("filter_colour")}</span>${colChips}</div>
+          ${catDD}
+          ${colDD}
           ${sizeGroup}
           ${stockGroup}
           <button class="clear" data-clear ${active ? "" : "hidden"}>${t("clear_filters")}</button>
@@ -138,17 +157,30 @@ async function initShop() {
         ${body}
       </div>`;
 
-    document.querySelectorAll("[data-cat]").forEach((b) =>
-      b.onclick = () => { state.cat = b.dataset.cat; apply(); });
-    document.querySelectorAll("[data-col]").forEach((b) =>
-      b.onclick = () => { const c = b.dataset.col; state.colours.has(c) ? state.colours.delete(c) : state.colours.add(c); apply(); });
+    document.querySelectorAll("[data-ddbtn]").forEach((b) =>
+      b.onclick = (e) => { e.preventDefault(); const dd = b.dataset.ddbtn; state.openDD = state.openDD === dd ? null : dd; render(); });
+    document.querySelectorAll("[data-catopt]").forEach((b) =>
+      b.onclick = () => { state.cat = b.dataset.catopt; state.openDD = null; apply(); });
+    document.querySelectorAll("[data-colopt]").forEach((b) =>
+      b.onclick = () => { const c = b.dataset.colopt; state.colours.has(c) ? state.colours.delete(c) : state.colours.add(c); state.openDD = "colour"; apply(); });
     document.querySelectorAll("[data-size]").forEach((b) =>
       b.onclick = () => { const s = b.dataset.size; state.sizes.has(s) ? state.sizes.delete(s) : state.sizes.add(s); apply(); });
     const stockBtn = document.querySelector("[data-instock]");
     if (stockBtn) stockBtn.onclick = () => { state.inStock = !state.inStock; apply(); };
     document.querySelectorAll("[data-clear]").forEach((b) =>
-      b.onclick = () => { state.cat = "ALL"; state.colours.clear(); state.sizes.clear(); state.inStock = false; apply(); });
+      b.onclick = () => { state.cat = "ALL"; state.colours.clear(); state.sizes.clear(); state.inStock = false; state.openDD = null; apply(); });
   };
+
+  // close an open dropdown on outside click or Escape (a link click still navigates)
+  const closeDD = (e) => {
+    if (!state.openDD) return;
+    if (e.target.closest && e.target.closest(".dd")) return;
+    state.openDD = null;
+    if (e.target.closest && e.target.closest("a")) return;
+    render();
+  };
+  document.addEventListener("click", closeDD);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && state.openDD) { state.openDD = null; render(); } });
 
   render();
   document.addEventListener("langchange", render);

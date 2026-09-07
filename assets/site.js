@@ -36,7 +36,7 @@ const STR = {
     filter_category: "Category", filter_colour: "Colour", filter_all: "All",
     filter_size: "Size", filter_availability: "Availability", in_stock_only: "In stock only",
     clear_filters: "Clear filters", no_results: "No products match these filters.",
-    results_one: "1 product", results_many: "{n} products",
+    results_one: "1 product", results_many: "{n} products", n_selected: "{n} selected",
   },
   ar: {
     dir: "rtl",
@@ -55,7 +55,7 @@ const STR = {
     filter_category: "الفئة", filter_colour: "اللون", filter_all: "الكل",
     filter_size: "القياس", filter_availability: "التوفّر", in_stock_only: "المتوفّر فقط",
     clear_filters: "مسح الفلاتر", no_results: "لا توجد منتجات مطابقة لهذه الفلاتر.",
-    results_one: "منتج واحد", results_many: "{n} منتجات",
+    results_one: "منتج واحد", results_many: "{n} منتجات", n_selected: "{n} مختارة",
   },
 };
 

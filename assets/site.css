@@ -112,6 +112,21 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.12; tex
 .chip-dot[aria-pressed="true"]::after { content: "✓"; font-size: 12px; margin-inline-start: 2px; }
 .filters .clear { margin-inline-start: auto; background: none; border: 0; color: var(--accent); cursor: pointer; font-size: 12px; text-transform: uppercase; letter-spacing: .8px; text-decoration: underline; text-underline-offset: 3px; }
 .results-line { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 0; }
+/* filter dropdowns (category / colour) */
+.dd { position: relative; }
+.dd__btn { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius); padding: 8px 13px; font-family: var(--sans); font-size: 13px; font-weight: 500; min-width: 130px; }
+.dd__btn::-webkit-details-marker { display: none; }
+.dd__btn::marker { content: ""; }
+.dd__btn:hover { border-color: var(--ink); }
+.dd__btn .cur { margin-inline-end: auto; }
+.dd__caret { font-size: 10px; color: var(--muted); transition: transform .15s ease; }
+.dd[open] .dd__caret { transform: rotate(180deg); }
+.dd__panel { position: absolute; z-index: 30; margin-top: 6px; min-width: 100%; width: max-content; max-width: 240px; max-height: 300px; overflow-y: auto; background: var(--panel); border: 1px solid var(--ink); border-radius: var(--radius); box-shadow: var(--shadow); padding: 6px; display: grid; gap: 1px; }
+.dd__opt { display: flex; align-items: center; gap: 9px; width: 100%; text-align: start; border: 0; background: none; cursor: pointer; padding: 8px 10px; font-family: var(--sans); font-size: 13.5px; color: var(--ink); border-radius: var(--radius); }
+.dd__opt:hover { background: rgba(27,23,18,.05); }
+.dd__opt[aria-selected="true"], .dd__opt[aria-checked="true"] { font-weight: 600; }
+.dd__opt .dot { width: 15px; height: 15px; flex: none; }
+.dd__check { margin-inline-start: auto; color: var(--accent); font-size: 13px; }
 
 /* ---- product grid -------------------------------------------------------- */
 .section-title { display: flex; align-items: baseline; justify-content: space-between; margin: 30px 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
