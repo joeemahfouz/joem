@@ -1,0 +1,89 @@
+{
+  "products": [
+    {
+      "handle": "hl014-nora-pointed-pump",
+      "style": "HL014",
+      "kind": "shoe",
+      "title": { "en": "Nora pointed pump", "ar": "حذاء نورا المدبّب" },
+      "type": { "en": "Heels", "ar": "كعب عالٍ" },
+      "category_code": "HEEL",
+      "material": { "en": "Genuine leather", "ar": "جلد طبيعي" },
+      "heel_cm": 8.5,
+      "heel_band": { "en": "High (8–10 cm)", "ar": "كعب عالٍ (٨-١٠ سم)" },
+      "price": 75.0,
+      "compare_at": null,
+      "description": {
+        "en": "Pointed-toe pump in genuine leather with an 8.5 cm heel and a lightly padded insole. Runs true to size.",
+        "ar": "حذاء مدبّب من الجلد الطبيعي بكعب ٨٫٥ سم ونعل داخلي مبطّن بخفّة. القياس مطابق للمعتاد."
+      },
+      "care": { "en": "Wipe clean with a dry cloth.", "ar": "تنظّف بقطعة قماش جافة." },
+      "options": {
+        "colour": ["BLK", "BEI"],
+        "size": ["35", "36", "37", "38", "39", "40", "41"]
+      },
+      "colours": [
+        {
+          "code": "BLK", "en": "Black", "ar": "أسود", "hex": "111111",
+          "images": ["hl014-blk-1.svg", "hl014-blk-2.svg", "hl014-blk-3.svg", "hl014-blk-4.svg"]
+        },
+        {
+          "code": "BEI", "en": "Beige", "ar": "بيج", "hex": "D7C4A3",
+          "images": ["hl014-bei-1.svg", "hl014-bei-2.svg", "hl014-bei-3.svg", "hl014-bei-4.svg"]
+        }
+      ],
+      "variants": [
+        { "sku": "HL014-BLK-35", "colour": "BLK", "size": "35", "stock": 1 },
+        { "sku": "HL014-BLK-36", "colour": "BLK", "size": "36", "stock": 2 },
+        { "sku": "HL014-BLK-37", "colour": "BLK", "size": "37", "stock": 4 },
+        { "sku": "HL014-BLK-38", "colour": "BLK", "size": "38", "stock": 5 },
+        { "sku": "HL014-BLK-39", "colour": "BLK", "size": "39", "stock": 5 },
+        { "sku": "HL014-BLK-40", "colour": "BLK", "size": "40", "stock": 3 },
+        { "sku": "HL014-BLK-41", "colour": "BLK", "size": "41", "stock": 1 },
+        { "sku": "HL014-BEI-35", "colour": "BEI", "size": "35", "stock": 0 },
+        { "sku": "HL014-BEI-36", "colour": "BEI", "size": "36", "stock": 1 },
+        { "sku": "HL014-BEI-37", "colour": "BEI", "size": "37", "stock": 2 },
+        { "sku": "HL014-BEI-38", "colour": "BEI", "size": "38", "stock": 3 },
+        { "sku": "HL014-BEI-39", "colour": "BEI", "size": "39", "stock": 2 },
+        { "sku": "HL014-BEI-40", "colour": "BEI", "size": "40", "stock": 1 },
+        { "sku": "HL014-BEI-41", "colour": "BEI", "size": "41", "stock": 0 }
+      ]
+    },
+    {
+      "handle": "bg007-layla-crossbody",
+      "style": "BG007",
+      "kind": "bag",
+      "title": { "en": "Layla crossbody", "ar": "حقيبة ليلى كروس بودي" },
+      "type": { "en": "Crossbody", "ar": "كروس بودي" },
+      "category_code": "CROS",
+      "material": { "en": "Genuine leather", "ar": "جلد طبيعي" },
+      "dimensions": { "en": "24 W × 16 H × 8 D cm", "ar": "٢٤ عرض × ١٦ ارتفاع × ٨ عمق سم" },
+      "strap_drop": 120,
+      "lining": { "en": "Fabric lining, 1 zip pocket", "ar": "بطانة قماش، جيب واحد بسحّاب" },
+      "price": 95.0,
+      "compare_at": null,
+      "description": {
+        "en": "Structured crossbody in genuine leather with an adjustable 120 cm strap and a fabric-lined interior.",
+        "ar": "حقيبة كروس بودي متماسكة من الجلد الطبيعي بحزام قابل للتعديل بطول ١٢٠ سم وبطانة قماش من الداخل."
+      },
+      "care": { "en": "Wipe clean with a dry cloth.", "ar": "تنظّف بقطعة قماش جافة." },
+      "options": {
+        "colour": ["TAN", "BLK"],
+        "size": ["OS"]
+      },
+      "colours": [
+        {
+          "code": "TAN", "en": "Tan", "ar": "كاميل", "hex": "B08D57",
+          "images": ["bg007-tan-1.svg", "bg007-tan-2.svg", "bg007-tan-3.svg", "bg007-tan-4.svg"]
+        },
+        {
+          "code": "BLK", "en": "Black", "ar": "أسود", "hex": "111111",
+          "images": ["bg007-blk-1.svg", "bg007-blk-2.svg", "bg007-blk-3.svg", "bg007-blk-4.svg"]
+        }
+      ],
+      "variants": [
+        { "sku": "BG007-TAN-OS", "colour": "TAN", "size": "OS", "stock": 4 },
+        { "sku": "BG007-BLK-OS", "colour": "BLK", "size": "OS", "stock": 6 }
+      ]
+    }
+  ]
+}

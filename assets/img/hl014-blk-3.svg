@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="sole">
+  <defs>
+    <radialGradient id="sweep" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#f4f1ec"/>
+      <stop offset="100%" stop-color="#e9e4dc"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#sweep)"/>
+  <ellipse cx="300" cy="470" rx="190" ry="26" fill="#000000" opacity="0.08"/>
+  <g transform="translate(0,10)"><path d="M120,398 C185,378 265,370 360,372 C420,373 452,380 470,390 C477,393 477,401 470,403 L128,406 C116,406 110,402 120,398 Z" fill="#111111" stroke="none" stroke-width="0"/><path d="M452,401 L472,401 L446,486 L430,479 Z" fill="#111111" stroke="none" stroke-width="0"/><path d="M150,392 C215,376 300,372 380,378" fill="none" stroke="#00000022" stroke-width="6"/></g><path d="M150,392 C230,376 340,372 448,384" fill="none" stroke="#00000030" stroke-width="10" stroke-dasharray="2 12"/>
+  <text x="300" y="556" text-anchor="middle" font-family="Georgia, serif" font-size="21"
+        fill="#8a8175" letter-spacing="1.5">sole</text>
+</svg>
