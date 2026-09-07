@@ -204,9 +204,13 @@ function toast(msg) {
 }
 
 /* ---- WhatsApp checkout ----------------------------------------------------- */
-function whatsappOrder() {
+// Returns the wa.me deep-link for the current cart. Used as an anchor href so
+// it opens reliably everywhere — including sandboxed iframes where window.open
+// (popups) is blocked — and on mobile where it launches the WhatsApp app.
+function whatsappHref() {
+  const base = `https://wa.me/${CONFIG.whatsapp}`;
   const { lines, subtotal, delivery, total } = cartTotals();
-  if (!lines.length) return;
+  if (!lines.length) return base;
   const ar = store.lang === "ar";
   const rows = lines.map((l) => {
     const name = L(l.product.title), col = L(colourMeta(l.product, l.variant.colour));
@@ -216,7 +220,7 @@ function whatsappOrder() {
   const msg = ar
     ? `مرحباً ${CONFIG.brand} 👋 أودّ تأكيد هذا الطلب:\n${rows}\n\nالمجموع الفرعي: ${money(subtotal)}\nالتوصيل: ${delivery ? money(delivery) : t("free")}\nالإجمالي: ${money(total)}\n\nالاسم: \nالعنوان: \nالدفع: عند الاستلام`
     : `Hello ${CONFIG.brand} 👋 I'd like to place this order:\n${rows}\n\nSubtotal: ${money(subtotal)}\nDelivery: ${delivery ? money(delivery) : t("free")}\nTotal: ${money(total)}\n\nName: \nAddress: \nPayment: Cash on delivery`;
-  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+  return `${base}?text=${encodeURIComponent(msg)}`;
 }
 
 /* ---- bootstrap ------------------------------------------------------------ */

@@ -349,7 +349,7 @@ function initCart() {
             <div class="summary__row"><span>${t("subtotal")}</span><span>${money(subtotal)}</span></div>
             <div class="summary__row"><span>${t("delivery")}</span><span>${delivery ? money(delivery) : t("free")}</span></div>
             <div class="summary__row summary__row--total"><span>${t("total")}</span><span>${money(total)}</span></div>
-            <button class="btn btn--wa btn--block" id="wabtn" style="margin-top:14px">💬 ${t("checkout_wa")}</button>
+            <a class="btn btn--wa btn--block" id="wabtn" href="${whatsappHref()}" target="_blank" rel="noopener" style="margin-top:14px">💬 ${t("checkout_wa")}</a>
             <p class="muted" style="font-size:12.5px;margin-top:10px">${t("cod_note")}</p>
             <a href="${root}index.html" class="link-inline" style="font-size:14px">${t("continue")}</a>
           </aside>
@@ -357,7 +357,6 @@ function initCart() {
       document.querySelectorAll("[data-inc]").forEach((b) => b.onclick = () => { const l = store.cart.find(i => i.sku === b.dataset.inc); setQty(b.dataset.inc, l.qty + 1); render(); });
       document.querySelectorAll("[data-dec]").forEach((b) => b.onclick = () => { const l = store.cart.find(i => i.sku === b.dataset.dec); setQty(b.dataset.dec, l.qty - 1); render(); });
       document.querySelectorAll("[data-rm]").forEach((b) => b.onclick = () => { setQty(b.dataset.rm, 0); render(); });
-      document.getElementById("wabtn").onclick = whatsappOrder;
     };
     render();
     document.addEventListener("langchange", render);
