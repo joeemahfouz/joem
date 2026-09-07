@@ -25,6 +25,11 @@ the URL query string — e.g. `index.html?cat=HEEL&colour=BLK,BEI&size=38&instoc
 — so a filtered view can be shared or bookmarked, and the back button works.
 Unknown values in the query are ignored.
 
+Product pages support colour deep-links — `product.html?handle=hl014-nora-pointed-pump&colour=BEI`
+opens with that colour selected. Choosing a swatch updates the URL, and when a
+colour filter is active on the shop, the grid links carry the colour through to
+the product page.
+
 - `assets/site.js` — config, bilingual UI strings, cart, WhatsApp checkout.
 - `assets/content.js` — long-form policy/size-guide copy (EN + AR).
 - `assets/pages.js` — page renderers.

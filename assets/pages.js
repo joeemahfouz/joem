@@ -19,8 +19,9 @@ function productCard(p, preferred) {
   // if a colour filter is active and this product has one, show that colour
   const match = preferred && preferred.size ? p.colours.find((c) => preferred.has(c.code)) : null;
   const img = match ? match.images[0] : firstImage(p);
+  const href = `${root}product.html?handle=${p.handle}${match ? "&colour=" + match.code : ""}`;
   return `
-    <a class="card" href="${root}product.html?handle=${p.handle}">
+    <a class="card" href="${href}">
       <div class="card__media"><img src="${root}assets/img/${img}" alt="${L(p.title)}" loading="lazy"></div>
       <div class="card__body">
         <span class="card__type">${L(p.type)}</span>
@@ -161,12 +162,21 @@ function initProduct() {
     if (!p) { location.replace((document.body.dataset.root || "") + "index.html"); return; }
     document.title = `${L(p.title)} · ${CONFIG.brand}`;
     const isBag = p.kind === "bag";
-    // pick a default colour that has stock
+    // colour deep-link: ?colour=CODE preselects it, otherwise the first in-stock colour
+    const wanted = new URLSearchParams(location.search).get("colour");
     const state = {
-      colour: (p.options.colour.find((c) => stockForColour(p, c) > 0)) || p.options.colour[0],
+      colour: (wanted && p.options.colour.includes(wanted) ? wanted : null)
+        || p.options.colour.find((c) => stockForColour(p, c) > 0) || p.options.colour[0],
       size: isBag ? "OS" : null,
       img: 0,
     };
+
+    // keep the URL in step with the chosen colour (shareable, back/forward-safe)
+    function syncColourURL() {
+      const root = document.body.dataset.root || "";
+      history.replaceState(null, "", `${root}product.html?handle=${p.handle}&colour=${state.colour}`);
+    }
+    if (wanted && p.options.colour.includes(wanted)) syncColourURL();
 
     function currentVariant() { return state.size ? variantOf(p, state.colour, state.size) : null; }
 
@@ -268,7 +278,7 @@ function initProduct() {
         b.onclick = () => {
           state.colour = b.dataset.colour; state.img = 0;
           if (!isBag && state.size && (!variantOf(p, state.colour, state.size) || variantOf(p, state.colour, state.size).stock <= 0)) state.size = null;
-          render();
+          syncColourURL(); render();
         });
       document.querySelectorAll(".size-btn").forEach((b) =>
         b.onclick = () => { if (b.disabled) return; state.size = b.dataset.size; render(); });
@@ -289,6 +299,10 @@ function initProduct() {
 
     render();
     document.addEventListener("langchange", render);
+    window.addEventListener("popstate", () => {
+      const c = new URLSearchParams(location.search).get("colour");
+      if (c && p.options.colour.includes(c) && c !== state.colour) { state.colour = c; state.img = 0; render(); }
+    });
   });
 }
 
