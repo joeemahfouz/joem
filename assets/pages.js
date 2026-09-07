@@ -42,19 +42,28 @@ async function initShop() {
   const catSeen = new Set();
   const colours = [];
   const colSeen = new Set();
+  const sizeSet = new Set();
   store.products.forEach((p) => {
     if (!catSeen.has(p.category_code)) { catSeen.add(p.category_code); categories.push({ code: p.category_code, label: p.type }); }
     p.colours.forEach((c) => { if (!colSeen.has(c.code)) { colSeen.add(c.code); colours.push(c); } });
+    p.variants.forEach((v) => { if (v.size !== "OS") sizeSet.add(v.size); });
   });
+  const sizes = [...sizeSet].sort((a, b) => Number(a) - Number(b));
 
-  const state = { cat: "ALL", colours: new Set() };
+  const state = { cat: "ALL", colours: new Set(), sizes: new Set(), inStock: false };
 
-  const matches = (p) =>
-    (state.cat === "ALL" || p.category_code === state.cat) &&
-    (state.colours.size === 0 || p.colours.some((c) => state.colours.has(c.code)));
+  // a product matches if at least one of its variants satisfies every active
+  // colour / size / stock constraint at once; category is a product-level facet.
+  const matches = (p) => {
+    if (state.cat !== "ALL" && p.category_code !== state.cat) return false;
+    return p.variants.some((v) =>
+      (state.colours.size === 0 || state.colours.has(v.colour)) &&
+      (state.sizes.size === 0 || state.sizes.has(v.size)) &&
+      (!state.inStock || v.stock > 0));
+  };
 
   const render = () => {
-    const active = state.cat !== "ALL" || state.colours.size > 0;
+    const active = state.cat !== "ALL" || state.colours.size > 0 || state.sizes.size > 0 || state.inStock;
     const filtered = store.products.filter(matches);
     const shoes = filtered.filter((p) => p.kind === "shoe");
     const bags = filtered.filter((p) => p.kind === "bag");
@@ -70,6 +79,12 @@ async function initShop() {
     const colChips = colours
       .map((c) => `<button class="chip-dot" data-col="${c.code}" aria-pressed="${state.colours.has(c.code)}">
         <span class="dot" style="background:#${c.hex}"></span>${L(c)}</button>`).join("");
+    const sizeChips = sizes
+      .map((s) => `<button class="chip" data-size="${s}" aria-pressed="${state.sizes.has(s)}">${s}</button>`).join("");
+    const sizeGroup = sizes.length
+      ? `<div class="filter-group"><span class="filter-label">${t("filter_size")}</span>${sizeChips}</div>` : "";
+    const stockGroup = `<div class="filter-group"><span class="filter-label">${t("filter_availability")}</span>
+        <button class="chip" data-instock aria-pressed="${state.inStock}">${t("in_stock_only")}</button></div>`;
 
     const resultsLine = active
       ? `<p class="results-line">${filtered.length === 1 ? t("results_one") : t("results_many").replace("{n}", filtered.length)}</p>`
@@ -93,6 +108,8 @@ async function initShop() {
         <div class="filters">
           <div class="filter-group"><span class="filter-label">${t("filter_category")}</span>${catChips}</div>
           <div class="filter-group"><span class="filter-label">${t("filter_colour")}</span>${colChips}</div>
+          ${sizeGroup}
+          ${stockGroup}
           <button class="clear" data-clear ${active ? "" : "hidden"}>${t("clear_filters")}</button>
         </div>
         ${body}
@@ -102,8 +119,12 @@ async function initShop() {
       b.onclick = () => { state.cat = b.dataset.cat; render(); });
     document.querySelectorAll("[data-col]").forEach((b) =>
       b.onclick = () => { const c = b.dataset.col; state.colours.has(c) ? state.colours.delete(c) : state.colours.add(c); render(); });
+    document.querySelectorAll("[data-size]").forEach((b) =>
+      b.onclick = () => { const s = b.dataset.size; state.sizes.has(s) ? state.sizes.delete(s) : state.sizes.add(s); render(); });
+    const stockBtn = document.querySelector("[data-instock]");
+    if (stockBtn) stockBtn.onclick = () => { state.inStock = !state.inStock; render(); };
     document.querySelectorAll("[data-clear]").forEach((b) =>
-      b.onclick = () => { state.cat = "ALL"; state.colours.clear(); render(); });
+      b.onclick = () => { state.cat = "ALL"; state.colours.clear(); state.sizes.clear(); state.inStock = false; render(); });
   };
 
   render();
