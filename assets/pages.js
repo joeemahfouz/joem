@@ -35,6 +35,22 @@ function productCard(p, preferred) {
     </a>`;
 }
 
+/* ---- Spanish brands we stock ---------------------------------------------- *
+ * Add brands here. Give a brand a `logo` (path under assets/img or a URL) to
+ * show its real logo instead of the wordmark. Names are examples to confirm.  */
+const BRANDS = [
+  { name: "Pepe Moll" },
+  { name: "Ángel Alarcón" },
+  { name: "Desirée" },
+];
+function brandPlate(b) {
+  const root = document.body.dataset.root || "";
+  const inner = b.logo
+    ? `<img src="${b.logo.startsWith("http") ? b.logo : root + b.logo}" alt="${b.name}" loading="lazy">`
+    : `<span class="brand-plate__name">${b.name}</span>`;
+  return `<div class="brand-plate" title="${b.name}">${inner}</div>`;
+}
+
 /* ---- shop / home ---------------------------------------------------------- */
 async function initShop() {
   await loadProducts();
@@ -151,7 +167,7 @@ async function initShop() {
           : "Shoes and bags from Spanish workshops — full-grain leather, made to be worn for years, not seasons. Every product page shows its material, its measurements and where it was made."}</p>
         <div class="hero__cta">
           <button class="btn btn--accent" data-scroll="catalogue">${store.lang === "ar" ? "تسوّقي المجموعة" : "Shop the collection"}</button>
-          <button class="btn btn--ghost" data-scroll="why">${store.lang === "ar" ? "لماذا إسبانيا" : "Why Spain"}</button>
+          <button class="btn btn--ghost" data-scroll="brands">${store.lang === "ar" ? "ماركاتنا الإسبانية" : "Our Spanish brands"}</button>
         </div>
         <div class="pill-row">
           <span class="pill">${store.lang === "ar" ? "جلد طبيعي كامل" : "Full-grain leather"}</span>
@@ -170,31 +186,15 @@ async function initShop() {
         </div>
         ${body}
       </div>
-      <section class="why" id="why"><div class="wrap">
-        <div class="why__head">
-          <p class="why__eyebrow">${ar ? "صنع في إسبانيا" : "Made in Spain"}</p>
-          <h2>${t("why_spain")}</h2>
+      <section class="brands" id="brands"><div class="wrap">
+        <div class="brands__head">
+          <p class="brands__eyebrow">${ar ? "صنع في إسبانيا" : "Made in Spain"}</p>
+          <h2>${ar ? "دور إسبانية نعتمدها" : "The Spanish houses we carry"}</h2>
+          <p class="brands__intro">${ar
+            ? "نوفّر ماركات إسبانية عريقة — الأسماء نفسها المعروضة في مدريد وبرشلونة. وكل صفحة منتج تذكر الدار التي صنعتها."
+            : "Established Spanish makers — the same names carried in Madrid and Barcelona. Every product page names the house that made it."}</p>
         </div>
-        <div class="why__cols">
-          <div class="why__col">
-            <h3>${ar ? "الجلد" : "The leather"}</h3>
-            <p>${ar
-              ? "جلد طبيعي كامل الحبيبات من مدابغ إسبانية، يلين مع الاستعمال بدل أن يتشقّق. تُترك حبيبات الجلد كما هي، فيكتسب كل زوج مظهره الخاص مع الوقت."
-              : "Full-grain hides from Spanish tanneries, which soften with wear rather than crack. The grain is left intact, so each pair ages into a patina of its own."}</p>
-          </div>
-          <div class="why__col">
-            <h3>${ar ? "الصناعة" : "The making"}</h3>
-            <p>${ar
-              ? "يُشكّل ويُنهى في ورش صغيرة في <span class=\"placeholder\">[أليكانتي / إلتشي — يُرجى تأكيد المنطقة قبل الإطلاق]</span>. يُصنع بكميات محدودة على يد حرفيين متمرّسين."
-              : "Lasted and finished in small workshops in <span class=\"placeholder\">[Alicante / Elche — confirm the region before this ships]</span>. Made in modest runs by people who do this all day."}</p>
-          </div>
-          <div class="why__col">
-            <h3>${ar ? "ماذا يعني لك" : "What it means for you"}</h3>
-            <p>${ar
-              ? "زوج تُعيد تنعيله بدل أن تستبدله. تدفع مرة واحدة لحذاء مصمّم ليُصلَّح لا ليُرمى."
-              : "A pair you re-heel instead of replace. You pay once for shoes built to be repaired, not thrown away."}</p>
-          </div>
-        </div>
+        <div class="brands__wall">${BRANDS.map(brandPlate).join("")}</div>
       </div></section>`;
 
     document.querySelectorAll("[data-ddbtn]").forEach((b) =>

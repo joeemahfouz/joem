@@ -233,22 +233,25 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.1; text
 .foot-origin { border-top: 1px solid var(--line); text-align: center; padding: 14px 20px; font-family: var(--sans); font-size: 11.5px; text-transform: uppercase; letter-spacing: 1.4px; color: var(--accent); }
 .foot-note { border-top: 1px solid var(--line); padding: 16px 0; font-size: 11.5px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); text-align: center; }
 
-/* ---- "Why Spain" --------------------------------------------------------- */
-.why { background: var(--panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 44px; }
-.why .wrap { padding: 56px 24px; }
-.why__head { max-width: 640px; margin-bottom: 30px; }
-.why__eyebrow { font-family: var(--sans); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin: 0 0 8px; }
-.why h2 { font-size: 34px; margin: 0; }
-.why__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
-.why__col h3 { font-size: 23px; margin: 0 0 8px; }
-.why__col p { font-size: 15px; color: var(--muted); margin: 0; line-height: 1.65; }
-.why__col .placeholder { color: var(--accent); font-style: italic; }
+/* ---- Spanish brands wall ------------------------------------------------- */
+#catalogue, #brands { scroll-margin-top: 96px; }
+.brands { background: var(--panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 44px; }
+.brands .wrap { padding: 56px 24px; }
+.brands__head { max-width: 620px; margin-bottom: 30px; }
+.brands__eyebrow { font-family: var(--sans); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin: 0 0 10px; }
+.brands h2 { font-size: 34px; margin: 0 0 12px; }
+.brands__intro { font-size: 16px; color: var(--muted); margin: 0; max-width: 60ch; line-height: 1.6; }
+.brands__wall { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+.brand-plate { display: grid; place-items: center; min-height: 118px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); transition: border-color .18s ease, background .18s ease; }
+.brand-plate:hover { border-color: var(--accent); background: var(--panel); }
+.brand-plate__name { font-family: var(--serif); font-size: 27px; font-weight: 500; letter-spacing: .5px; color: var(--ink); text-align: center; text-wrap: balance; }
+.brand-plate img { max-height: 60px; max-width: 100%; width: auto; object-fit: contain; }
 
 /* ---- responsive ---------------------------------------------------------- */
 @media (max-width: 860px) {
   .pdp, .cart-wrap { grid-template-columns: 1fr; }
   .site-foot .wrap { grid-template-columns: 1fr 1fr; }
-  .why__cols { grid-template-columns: 1fr; gap: 26px; }
+  .brands .wrap { padding: 44px 24px; }
   .brand-bar__row { display: flex; align-items: center; gap: 12px; height: 64px; }
   .brand-bar .brand { justify-self: auto; font-size: 24px; letter-spacing: 4px; text-align: start; }
   .brand-bar .brand small { text-align: start; }
