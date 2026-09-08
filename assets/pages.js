@@ -25,6 +25,7 @@ function productCard(p, preferred) {
       <div class="card__media"><img src="${root}assets/img/${img}" alt="${L(p.title)}" loading="lazy"></div>
       <div class="card__body">
         <span class="card__type">${L(p.type)}</span>
+        <span class="origin-tag${p.origin.code === "ES" ? " origin-tag--es" : ""}">${L(p.origin)}</span>
         <span class="card__title">${L(p.title)}</span>
         <div class="card__foot">
           ${sold ? `<span class="badge-soldout">${t("sold_out")}</span>` : priceHTML(p)}
@@ -53,7 +54,7 @@ async function initShop() {
 
   // ---- filter state <-> URL query (?cat=…&colour=BLK,BEI&size=35,38&instock=1)
   // openDD tracks which filter dropdown is open (UI-only, not in the URL).
-  const state = { cat: "ALL", colours: new Set(), sizes: new Set(), inStock: false, openDD: null };
+  const state = { cat: "ALL", colours: new Set(), sizes: new Set(), inStock: false, spain: false, openDD: null };
   const readURL = () => {
     const q = new URLSearchParams(location.search);
     const cat = q.get("cat");
@@ -62,6 +63,7 @@ async function initShop() {
     state.colours = pick("colour", colSeen);
     state.sizes = pick("size", sizeSet);
     state.inStock = q.get("instock") === "1";
+    state.spain = q.get("spain") === "1";
   };
   const writeURL = () => {
     const q = new URLSearchParams();
@@ -69,6 +71,7 @@ async function initShop() {
     if (state.colours.size) q.set("colour", [...state.colours].join(","));
     if (state.sizes.size) q.set("size", [...state.sizes].join(","));
     if (state.inStock) q.set("instock", "1");
+    if (state.spain) q.set("spain", "1");
     const qs = q.toString();
     history.replaceState(null, "", location.pathname + (qs ? "?" + qs : "") + location.hash);
   };
@@ -79,6 +82,7 @@ async function initShop() {
   // colour / size / stock constraint at once; category is a product-level facet.
   const matches = (p) => {
     if (state.cat !== "ALL" && p.category_code !== state.cat) return false;
+    if (state.spain && p.origin.code !== "ES") return false;
     return p.variants.some((v) =>
       (state.colours.size === 0 || state.colours.has(v.colour)) &&
       (state.sizes.size === 0 || state.sizes.has(v.size)) &&
@@ -86,7 +90,8 @@ async function initShop() {
   };
 
   const render = () => {
-    const active = state.cat !== "ALL" || state.colours.size > 0 || state.sizes.size > 0 || state.inStock;
+    const active = state.cat !== "ALL" || state.colours.size > 0 || state.sizes.size > 0 || state.inStock || state.spain;
+    const ar = store.lang === "ar";
     const filtered = store.products.filter(matches);
     const shoes = filtered.filter((p) => p.kind === "shoe");
     const bags = filtered.filter((p) => p.kind === "bag");
@@ -126,6 +131,8 @@ async function initShop() {
       ? `<div class="filter-group"><span class="filter-label">${t("filter_size")}</span>${sizeChips}</div>` : "";
     const stockGroup = `<div class="filter-group"><span class="filter-label">${t("filter_availability")}</span>
         <button class="chip" data-instock aria-pressed="${state.inStock}">${t("in_stock_only")}</button></div>`;
+    const originGroup = `<div class="filter-group"><span class="filter-label">${t("origin")}</span>
+        <button class="chip" data-spain aria-pressed="${state.spain}">${t("made_in_spain")}</button></div>`;
 
     const resultsLine = active
       ? `<p class="results-line">${filtered.length === 1 ? t("results_one") : t("results_many").replace("{n}", filtered.length)}</p>`
@@ -137,25 +144,58 @@ async function initShop() {
 
     document.getElementById("app").innerHTML = `
       <section class="hero"><div class="wrap"><div class="hero__inner">
-        <p class="hero__eyebrow">${store.lang === "ar" ? "منتجات جلدية · بيروت" : "Leather goods · Beirut"}</p>
-        <h1>${store.lang === "ar" ? "أحذية وحقائب مصنوعة لتُلبَس" : "Shoes &amp; bags, made to be <em>worn</em>"}</h1>
-        <p>${t("cod_note")}</p>
+        <p class="hero__eyebrow">${store.lang === "ar" ? "صنع في إسبانيا" : "Hecho en España"}</p>
+        <h1>${store.lang === "ar" ? "جلد إسباني، <em>مصنوع ليدوم</em>" : "Spanish leather, <em>made to last</em>"}</h1>
+        <p>${store.lang === "ar"
+          ? "أحذية وحقائب من ورش إسبانية — جلد طبيعي كامل، مصنوعة لتُلبس لسنوات لا لموسم. كل صفحة منتج تعرض المادة والقياسات وبلد الصنع."
+          : "Shoes and bags from Spanish workshops — full-grain leather, made to be worn for years, not seasons. Every product page shows its material, its measurements and where it was made."}</p>
+        <div class="hero__cta">
+          <button class="btn btn--accent" data-scroll="catalogue">${store.lang === "ar" ? "تسوّقي المجموعة" : "Shop the collection"}</button>
+          <button class="btn btn--ghost" data-scroll="why">${store.lang === "ar" ? "لماذا إسبانيا" : "Why Spain"}</button>
+        </div>
         <div class="pill-row">
-          <span class="pill">🇱🇧 ${store.lang === "ar" ? "توصيل لكل لبنان" : "Delivery across Lebanon"}</span>
-          <span class="pill">💵 ${store.lang === "ar" ? "الدفع عند الاستلام" : "Cash on delivery"}</span>
-          <span class="pill">💬 ${store.lang === "ar" ? "تأكيد عبر واتساب" : "WhatsApp confirmation"}</span>
+          <span class="pill">${store.lang === "ar" ? "جلد طبيعي كامل" : "Full-grain leather"}</span>
+          <span class="pill">${store.lang === "ar" ? "قياسات ٣٥–٤١" : "Sizes 35–41"}</span>
+          <span class="pill">${store.lang === "ar" ? "استبدال مجاني خلال ٣ أيام" : "Free exchange within 3 days"}</span>
         </div>
       </div></div></section>
-      <div class="wrap">
+      <div class="wrap" id="catalogue">
         <div class="filters">
           ${catDD}
           ${colDD}
           ${sizeGroup}
           ${stockGroup}
+          ${originGroup}
           <button class="clear" data-clear ${active ? "" : "hidden"}>${t("clear_filters")}</button>
         </div>
         ${body}
-      </div>`;
+      </div>
+      <section class="why" id="why"><div class="wrap">
+        <div class="why__head">
+          <p class="why__eyebrow">${ar ? "صنع في إسبانيا" : "Made in Spain"}</p>
+          <h2>${t("why_spain")}</h2>
+        </div>
+        <div class="why__cols">
+          <div class="why__col">
+            <h3>${ar ? "الجلد" : "The leather"}</h3>
+            <p>${ar
+              ? "جلد طبيعي كامل الحبيبات من مدابغ إسبانية، يلين مع الاستعمال بدل أن يتشقّق. تُترك حبيبات الجلد كما هي، فيكتسب كل زوج مظهره الخاص مع الوقت."
+              : "Full-grain hides from Spanish tanneries, which soften with wear rather than crack. The grain is left intact, so each pair ages into a patina of its own."}</p>
+          </div>
+          <div class="why__col">
+            <h3>${ar ? "الصناعة" : "The making"}</h3>
+            <p>${ar
+              ? "يُشكّل ويُنهى في ورش صغيرة في <span class=\"placeholder\">[أليكانتي / إلتشي — يُرجى تأكيد المنطقة قبل الإطلاق]</span>. يُصنع بكميات محدودة على يد حرفيين متمرّسين."
+              : "Lasted and finished in small workshops in <span class=\"placeholder\">[Alicante / Elche — confirm the region before this ships]</span>. Made in modest runs by people who do this all day."}</p>
+          </div>
+          <div class="why__col">
+            <h3>${ar ? "ماذا يعني لك" : "What it means for you"}</h3>
+            <p>${ar
+              ? "زوج تُعيد تنعيله بدل أن تستبدله. تدفع مرة واحدة لحذاء مصمّم ليُصلَّح لا ليُرمى."
+              : "A pair you re-heel instead of replace. You pay once for shoes built to be repaired, not thrown away."}</p>
+          </div>
+        </div>
+      </div></section>`;
 
     document.querySelectorAll("[data-ddbtn]").forEach((b) =>
       b.onclick = (e) => { e.preventDefault(); const dd = b.dataset.ddbtn; state.openDD = state.openDD === dd ? null : dd; render(); });
@@ -167,8 +207,12 @@ async function initShop() {
       b.onclick = () => { const s = b.dataset.size; state.sizes.has(s) ? state.sizes.delete(s) : state.sizes.add(s); apply(); });
     const stockBtn = document.querySelector("[data-instock]");
     if (stockBtn) stockBtn.onclick = () => { state.inStock = !state.inStock; apply(); };
+    const spainBtn = document.querySelector("[data-spain]");
+    if (spainBtn) spainBtn.onclick = () => { state.spain = !state.spain; apply(); };
     document.querySelectorAll("[data-clear]").forEach((b) =>
-      b.onclick = () => { state.cat = "ALL"; state.colours.clear(); state.sizes.clear(); state.inStock = false; state.openDD = null; apply(); });
+      b.onclick = () => { state.cat = "ALL"; state.colours.clear(); state.sizes.clear(); state.inStock = false; state.spain = false; state.openDD = null; apply(); });
+    document.querySelectorAll("[data-scroll]").forEach((b) =>
+      b.onclick = () => { const el = document.getElementById(b.dataset.scroll); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); });
   };
 
   // close an open dropdown on outside click or Escape (a link click still navigates)
@@ -251,6 +295,7 @@ function initProduct() {
 
       const specRows = [];
       specRows.push([t("material"), L(p.material)]);
+      specRows.push([t("origin"), L(p.origin)]);
       if (isBag) {
         specRows.push([t("dimensions"), L(p.dimensions)]);
         if (p.strap_drop) specRows.push([t("strap"), `${p.strap_drop} cm`]);

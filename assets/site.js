@@ -37,6 +37,11 @@ const STR = {
     filter_size: "Size", filter_availability: "Availability", in_stock_only: "In stock only",
     clear_filters: "Clear filters", no_results: "No products match these filters.",
     results_one: "1 product", results_many: "{n} products", n_selected: "{n} selected",
+    origin_strip: "Hecho en España · Made in Spain — origin shown on every product",
+    brand_sub: "Calzado y bolsos · Spanish leather",
+    proof_made: "Made in Spain", proof_leather: "Genuine leather", proof_cod: "Cash on delivery across Lebanon",
+    origin_line: "Made in Spain — origin shown on every product",
+    origin: "Origin", made_in_spain: "Made in Spain", why_spain: "Why Spain",
   },
   ar: {
     dir: "rtl",
@@ -56,6 +61,11 @@ const STR = {
     filter_size: "القياس", filter_availability: "التوفّر", in_stock_only: "المتوفّر فقط",
     clear_filters: "مسح الفلاتر", no_results: "لا توجد منتجات مطابقة لهذه الفلاتر.",
     results_one: "منتج واحد", results_many: "{n} منتجات", n_selected: "{n} مختارة",
+    origin_strip: "صنع في إسبانيا — بلد المنشأ مذكور على كل منتج",
+    brand_sub: "أحذية وحقائب · جلد إسباني",
+    proof_made: "صنع في إسبانيا", proof_leather: "جلد طبيعي", proof_cod: "الدفع عند الاستلام في كل لبنان",
+    origin_line: "صنع في إسبانيا — بلد المنشأ مذكور على كل منتج",
+    origin: "بلد الصنع", made_in_spain: "صنع في إسبانيا", why_spain: "لماذا إسبانيا",
   },
 };
 
@@ -149,19 +159,23 @@ function renderChrome() {
     `<a href="${root}${href}" ${page === id ? 'aria-current="page"' : ""}>${t(key)}</a>`;
   const head = document.querySelector("[data-site-head]");
   if (head) head.innerHTML = `
-    <div class="site-head"><div class="wrap site-head__row">
-      <a class="brand" href="${root}index.html">${CONFIG.brand}<small>${L(CONFIG.tagline)}</small></a>
+    <div class="origin-strip">${t("origin_strip")}</div>
+    <div class="brand-bar"><div class="wrap brand-bar__row">
       <nav class="nav" id="mainnav">
         ${link("index.html", "nav_shop", "shop")}
         ${link("size-guide.html", "nav_size", "size")}
         ${link("delivery.html", "nav_delivery", "delivery")}
         ${link("returns.html", "nav_returns", "returns")}
       </nav>
+      <a class="brand" href="${root}index.html">${CONFIG.brand}<small>${t("brand_sub")}</small></a>
       <div class="head-tools">
         <button class="lang-toggle" onclick="toggleLang()">${store.lang === "en" ? "العربية" : "EN"}</button>
         <a class="cart-link" href="${root}cart.html" aria-label="${t("cart")}">🛍️<span class="cart-count" data-cart-count hidden>0</span></a>
         <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('mainnav').classList.toggle('open')">☰</button>
       </div>
+    </div></div>
+    <div class="proof-strip"><div class="wrap proof-strip__row">
+      <span>${t("proof_made")}</span><span>${t("proof_leather")}</span><span>${t("proof_cod")}</span>
     </div></div>`;
 
   const foot = document.querySelector("[data-site-foot]");
@@ -185,6 +199,7 @@ function renderChrome() {
           <a href="https://wa.me/${CONFIG.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
+      <div class="foot-origin">${t("origin_line")}</div>
       <div class="foot-note">© ${new Date().getFullYear()} ${CONFIG.brand} · Beirut, Lebanon</div>
     </footer>`;
   paintCartCount();
